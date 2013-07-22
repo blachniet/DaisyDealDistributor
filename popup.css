@@ -1,25 +1,22 @@
-/**
- * Copyright (c) 2011 The Chromium Authors. All rights reserved.
- * Use of this source code is governed by a BSD-style license that can be
- * found in the LICENSE file.
- */
-
-body {
-  overflow: hidden;
-  margin: 0px;
-  padding: 0px;
-  background: white;
-  width: 400px;
+h1 {
+  font-size: 1.75em;
+  border-bottom: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #000;
+  text-align: center;
 }
 
-div:first-child {
-  margin-top: 0px;
+tr td:first-child {
+  text-align: right;
+  vertical-align: top;
+  padding: 2px 10px 2px 2px;
 }
 
-div {
-  padding: 1px 3px;
-  font-family: sans-serif;
-  font-size: 10pt;
-  width: 400px;
-  margin-top: 1px;
+input {
+  width: 100%;
+}
+
+label {
+  font-weight: bold;
+  white-space: nowrap;
 }
