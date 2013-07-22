@@ -64,5 +64,10 @@ function fillForm(data){
 }
 
 chrome.runtime.sendMessage({submissionUrl: document.URL}, function(response) {
-  fillForm(response);
+  chrome.storage.local.get('daisyInputInfo', function(data){
+    fillForm({
+      pageInfo: response,
+      inputInfo: data.daisyInputInfo
+    });
+  });
 });

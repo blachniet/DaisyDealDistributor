@@ -10,14 +10,17 @@ function onTabOpened(tab){
 /**
  * Launches the submission pages.
  */
-function launchPages(){
-  var pages = getSupportedPages();
-  for (var i = 0; i < pages.length; ++i){
-    chrome.tabs.create({
-      url: pages[i].submissionUrl,
-      active: true,
-    }, onTabOpened);
-  }
+function launchPages(inputInfo){
+  console.log("In background: " + inputInfo.firstName);
+  chrome.storage.local.set({'daisyInputInfo': inputInfo},function(){
+    var pages = getSupportedPages();
+    for (var i = 0; i < pages.length; ++i){
+      chrome.tabs.create({
+        url: pages[i].submissionUrl,
+        active: true,
+      }, onTabOpened);
+    }
+  });
 }
 
 /**
@@ -26,18 +29,7 @@ function launchPages(){
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     console.log("Getting page info for " + request.submissionUrl);
-    var data = {
-      pageInfo: getSupportedPage(request.submissionUrl),
-      inputInfo:{
-        firstName: "MyFirstName",
-        lastName: "MyLastName",
-        email: "MyEmail@example.com",
-        subject: "This is the subject",
-        url: "http://google.com",
-        message: "I am so awesome"
-      }
-    };
-    sendResponse(data);
+    sendResponse(getSupportedPage(request.submissionUrl));
   });
 
 /**

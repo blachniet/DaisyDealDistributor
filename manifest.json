@@ -4,6 +4,7 @@
   "description": "Quickly submit deals to mommy, deal, and coupon blogs.",
   "permissions": [
     "tabs",
+    "storage",
     "http://moneysavingmom.com/*",
     "http://forthemommas.com/*",
     "http://hip2save.com/*",
