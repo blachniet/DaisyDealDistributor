@@ -23,6 +23,10 @@ function launchPages(inputInfo){
   });
 }
 
+function saveInput(inputInfo){
+  chrome.storage.local.set({'daisyInputInfo': inputInfo});
+}
+
 /**
  * Register to listen for messages from the content script.
  */

@@ -1,13 +1,23 @@
+function getCurrentInputInfo(){
+  return {
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    email: document.getElementById('email').value,
+    subject: document.getElementById('subject').value,
+    url: document.getElementById('url').value,
+    message: document.getElementById('message').value,
+  };
+}
+
+function saveCurrentInputInfo(){
+  chrome.runtime.getBackgroundPage(function(bgPage){
+    bgPage.saveInput(getCurrentInputInfo());
+  });
+}
+
 function onSubmit(){
   chrome.runtime.getBackgroundPage(function (bgPage){
-    bgPage.launchPages({
-      firstName: document.getElementById('firstName').value,
-      lastName: document.getElementById('lastName').value,
-      email: document.getElementById('email').value,
-      subject: document.getElementById('subject').value,
-      url: document.getElementById('url').value,
-      message: document.getElementById('message').value,
-    });
+    bgPage.launchPages(getCurrentInputInfo());
   });
 }
 
@@ -27,4 +37,13 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('message').value = data.daisyInputInfo.message;
     }
   });
+
+  // This kinda helps in saving field info. 
+  // It will save when you leave a field.
+  document.getElementById('firstName').onblur = saveCurrentInputInfo;
+  document.getElementById('lastName').onblur = saveCurrentInputInfo;
+  document.getElementById('email').onblur = saveCurrentInputInfo;
+  document.getElementById('subject').onblur = saveCurrentInputInfo;
+  document.getElementById('url').onblur = saveCurrentInputInfo;
+  document.getElementById('message').onblur = saveCurrentInputInfo;
 });
