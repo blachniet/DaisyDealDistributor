@@ -16,4 +16,15 @@ function onSubmit(){
 // specific elements when it triggers.
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('#submitButton').addEventListener('click', onSubmit);
+
+  chrome.storage.local.get('daisyInputInfo', function(data){
+    if (data && data.daisyInputInfo){
+      document.getElementById('firstName').value = data.daisyInputInfo.firstName;
+      document.getElementById('lastName').value = data.daisyInputInfo.lastName;
+      document.getElementById('email').value = data.daisyInputInfo.email;
+      document.getElementById('subject').value = data.daisyInputInfo.subject;
+      document.getElementById('url').value = data.daisyInputInfo.url;
+      document.getElementById('message').value = data.daisyInputInfo.message;
+    }
+  });
 });
