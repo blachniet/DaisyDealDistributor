@@ -1,6 +1,6 @@
 {
-  "name": "Daisy",
-  "version": "1.0",
+  "name": "Daisy Deal Distributor",
+  "version": "0.1",
   "description": "Quickly submit deals to mommy, deal, and coupon blogs.",
   "permissions": [
     "tabs",
@@ -9,7 +9,7 @@
     "http://forthemommas.com/*",
     "http://hip2save.com/*",
     "http://www.pennypinchinmom.com/*",
-    "http://www.passionforsavings.com/"
+    "http://www.passionforsavings.com/*"
   ],
   "background": {
     "scripts": ["background.js"],
